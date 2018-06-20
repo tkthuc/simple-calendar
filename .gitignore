@@ -1,0 +1,9 @@
+*.log
+*.log.*
+*.bak
+
+node_modules
+
+dist
+
+**/dist/*

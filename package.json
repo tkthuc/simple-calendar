@@ -1,0 +1,55 @@
+{
+  "name": "simple-calendar",
+  "version": "1.0.0",
+  "description": "A simple calendar similar to Window's calendar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "build:webapp": "webpack --mode=development"
+  },
+  "keywords": [
+    "passport",
+    "redis"
+  ],
+  "author": "Tran Kien Thuc",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "body-parser": "~1.15.2",
+    "clean-webpack-plugin": "0.1.19",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.4.3",
+    "ejs": "~2.5.2",
+    "express": "4.16.3",
+    "express-session": "~1.14.1",
+    "method-override": "~2.3.6",
+    "mongoose": "4.13.14",
+    "morgan": "~1.7.0",
+    "passport": "0.4.0",
+    "passport-facebook": "~2.1.1",
+    "passport-google-oauth": "~1.0.0",
+    "passport-local": "~1.0.0",
+    "passport-twitter": "~1.0.4",
+    "react": "16.4.0",
+    "react-dom": "16.4.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.4",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "css-loader": "0.28.11",
+    "html-webpack-plugin": "3.2.0",
+    "mini-css-extract-plugin": "0.4.0",
+    "node-sass": "4.9.0",
+    "nodemon": "1.17.5",
+    "react": "16.4.0",
+    "react-dom": "16.4.0",
+    "sass-loader": "7.0.3",
+    "style-loader": "0.21.0",
+    "webpack": "4.10.2",
+    "webpack-cli": "3.0.3"
+  }
+}
