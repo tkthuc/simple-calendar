@@ -2,6 +2,9 @@ import React from 'react';
 import Day, {getDisplayedDates} from './Day';
 import Modal from './Modal';
 
+
+let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 export default class Calendar extends React.Component {
     
     constructor(props) {
@@ -10,7 +13,7 @@ export default class Calendar extends React.Component {
             weeks : 6,
             weekdays : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
             monthdays : 31,
-            selectedDay: null,
+            selectedDay: null,            
             displayedDays : getDisplayedDates(new Date())
         }
        
@@ -29,6 +32,11 @@ export default class Calendar extends React.Component {
         })
     }
 
+    showMonthAndYear() {
+        let date = new Date();
+        return `${months[date.getMonth()]} ${date.getFullYear()}`  ;
+    }
+
     render() {
         return (         
                <div className="wrapper">
@@ -38,7 +46,7 @@ export default class Calendar extends React.Component {
                             <div className="toggle__option">week</div>
                             <div className="toggle__option toggle__option--selected">month</div>
                         </div>
-                        <div className="current-month">June 2016</div>
+                        <div className="current-month"> { this.showMonthAndYear() } </div>
                         <div className="search-input">
                             <input type="text" defaultValue="What are you looking for?"/>
                             <i className="fa fa-search"></i>
