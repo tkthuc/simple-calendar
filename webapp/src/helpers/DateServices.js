@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 /**
  * 
  * @param {Date} date 
@@ -74,11 +71,4 @@ function getNumberOfDayInMonth(month, year) {
         return 29;
     }
     return 28;
-}
-
-
-export default function Day(props) {
-    return (
-        <div key={props.day} className="calendar__day day" onClick={props.onClick}> { props.day } </div>    
-    );
 }

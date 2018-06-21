@@ -1,18 +1,17 @@
 import React from 'react';
-import Day, {getDisplayedDates} from './Day';
-import Modal from './Modal';
+import Day from '../day/Day';
+import Modal from '../modal/Modal';
+
+import { getDisplayedDates } from '../../helpers';
 
 
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const weekdays =  ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 export default class Calendar extends React.Component {
     
     constructor(props) {
-        super(props);
+        super(props);       
         this.state = {
-            weeks : 6,
-            weekdays : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-            monthdays : 31,
             selectedDay: null,            
             displayedDays : getDisplayedDates(new Date())
         }
@@ -55,7 +54,7 @@ export default class Calendar extends React.Component {
                         <div className="calendar">
                         
                             <div className="calendar__header">
-                                { this.state.weekdays.map(weekday => <div key={weekday}>{weekday}</div> ) }
+                                { weekdays.map(weekday => <div key={weekday}>{weekday}</div> ) }
                             </div>           
                            
                             {
