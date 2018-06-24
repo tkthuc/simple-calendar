@@ -31,6 +31,27 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
+    app.get('/styles/bootstrap/*', function(req, res) {
+        let url = req.originalUrl.substring(req.originalUrl.indexOf('css'));
+        res.sendFile(path.resolve(`./node_modules/bootstrap/dist/${url}`));
+    })
+
+    app.get('/styles/font-awesome/*', function(req, res) {
+        let url;
+        if(req.originalUrl.indexOf('fonts') > -1) {
+            url = req.originalUrl.substring(req.originalUrl.indexOf('fonts'));
+        } else {
+            url = req.originalUrl.substring(req.originalUrl.indexOf('css')); 
+        }
+        if (url.indexOf('?') > -1) {
+            url = url.substring(0,url.indexOf('?'));
+        }
+       
+        res.sendFile(path.resolve(`./node_modules/font-awesome/${url}`));
+    })
+
+
+
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error

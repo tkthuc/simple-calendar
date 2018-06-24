@@ -13,7 +13,7 @@ export default class Calendar extends React.Component {
         super(props);       
         this.state = {
             selectedDay: null,            
-            displayedDays : getDisplayedDates(new Date())
+            displayedDays : getDisplayedDates(props.date)
         }
        
     }
@@ -59,11 +59,11 @@ export default class Calendar extends React.Component {
                            
                             {
                                [0,1,2,3,4,5].map( week => {
-                                    return <div className="calendar__week">
+                                    return <div className="calendar__week" key={week}>
                                             { 
                                                     [0,1,2,3,4,5,6].map(day =>  {   
-                                                        let date = this.state.displayedDays[week*7 + day].getDate();                                              
-                                                        return <Day day={date} key={date} onClick = {() => this.handleClick(date)}/>  
+                                                        let date = this.state.displayedDays[week*7 + day];                                              
+                                                        return <Day day={date} key={date.getDate()} onClick = {() => this.handleClick(date)}/>  
                                                     })
                                             } 
                                             </div>
@@ -72,7 +72,7 @@ export default class Calendar extends React.Component {
                            
                       
                         </div>
-                        <Modal content={this.state.selectedDay} isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>
+                        <Modal content={this.state.selectedDay && this.state.selectedDay.getDate()} isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>
                     </main>                             
                  
             </div>

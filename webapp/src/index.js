@@ -7,6 +7,6 @@ import Calendar from './components/calendar/Calendar';
 import './styles.css'
 
 ReactDOM.render(
-    <Calendar/>,
+    <Calendar date={new Date()}/>,
     document.getElementById('container')
 )

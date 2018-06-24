@@ -56,7 +56,7 @@ export function getDisplayedDates(date) {
  */
 
 
-function getNumberOfDayInMonth(month, year) {
+export function getNumberOfDayInMonth(month, year) {
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let monthsWith31Days =  ['January', 'March', 'May', 'July', 'August', 'October', 'December'];
     let monthsWith30Days =  ['April', 'June', 'September', 'November'];
