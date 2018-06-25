@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-import Calendar from './components/calendar/Calendar';
+import App from './containers/App';
 
 import './styles.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 ReactDOM.render(
-    <Calendar date={new Date()}/>,
+    <App date={new Date()}/>,
     document.getElementById('container')
 )

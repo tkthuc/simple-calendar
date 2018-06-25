@@ -10,17 +10,15 @@
     display: grid;
     grid-template-rows: 70px 1fr 70px;
     grid-template-columns: 1fr;
-    grid-template-areas: "sidebar"
-                         "content";
-    width: 100vw; /* unnecessary, but let's keep things consistent */
+    grid-template-areas:   "content";
     height: 100vh;
   }
   
   @media screen and (min-width: 850px) {
     .wrapper {
-      grid-template-columns: 200px 5fr;
+      grid-template-columns: 5fr;
       grid-template-rows: 1fr;
-      grid-template-areas: "sidebar content";
+      grid-template-areas: "content";
     }
   }
   

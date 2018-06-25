@@ -11,9 +11,9 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        publicPath: './webapp/dist',
+        publicPath: '/webapp/dist/',
         sourceMapFilename: '[file].map',
-        path: path.resolve(__dirname, './webapp/dist')
+        path:  `${__dirname}/webapp/dist`
     },
     plugins :[             
         new CleanWebapackPlugin(['./webpack/dist']),
@@ -42,7 +42,16 @@ module.exports = {
                 MiniCssExtractPlugin.loader,
                 "css-loader"
               ]
-          }         
+          },{
+            test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,            
+            use: [{
+                loader: 'file-loader?name=[name].[ext]'
+            }]
+          },
+          { 
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+            loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+          },       
         ],    
       },
       resolve: {
