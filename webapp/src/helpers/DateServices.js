@@ -15,7 +15,7 @@ export function getDisplayedDates(date) {
 
     let weekdayOfFirstDayOfMonth = firstDayOfMonth.getDay();
 
-    let previousMonth = (currentMonth - 1) % 12;
+    let previousMonth = (currentMonth + 11) % 12;
 
     let yearOfFirstWeekday =previousMonth == 11 ? currentYear -1 : currentYear;   
   

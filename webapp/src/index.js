@@ -8,6 +8,6 @@ import './styles.css'
 import 'font-awesome/css/font-awesome.min.css'
 
 ReactDOM.render(
-    <App date={new Date()}/>,
+    <App/>,
     document.getElementById('container')
 )

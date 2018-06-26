@@ -14,7 +14,7 @@ describe('Test Services for Date', function() {
         
         expect(getNumberOfDayInMonth(1,2000)).toEqual(29);
         expect(getNumberOfDayInMonth(1,1998)).toEqual(28);
-        expect(getNumberOfDayInMonth(1,1900)).toEqual(28);
+        expect(getNumberOfDayInMonth(1,1900)).toEqual(28);        
     });
 
     it('testing getDisplayDates return list of displayed days', () => {
@@ -29,5 +29,11 @@ describe('Test Services for Date', function() {
         expect(days[0].getMonth()).toBe(4);
         expect(days[34].getDate()).toBe(30);
         expect(days[41].getMonth()).toBe(6);
+
+        date = new Date(2019,0,1);
+        days = getDisplayedDates(date);
+        expect(days[0].getDate()).toBe(30);
+        expect(days[1].getDate()).toBe(31);
+        expect(days[2].getDate()).toBe(1);
     });
 });
