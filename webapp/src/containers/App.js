@@ -9,7 +9,7 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             isDisplayed: false,
-            selectedDay: null
+            selectedDay: props.date            
         }
     }
 
@@ -26,17 +26,31 @@ export default class App extends React.Component {
         })
     }
 
+    showPrevious() {
+        let date = this.state.selectedDay;
+        this.setState({
+            selectedDay: new Date(date.setDate(date.getDate()-30))
+        })
+    }
+
+    showNext() {
+        let date = this.state.selectedDay;
+        this.setState({
+            selectedDay: new Date(date.setDate(date.getDate()+30))
+        })
+    }
+
     render() {
         return (
             <div className='calendar_container'>
                 <div class='left-panel'>
-                    <span class="fa fa-angle-left"></span>
+                    <i class="fa fa-angle-left big-icon" onClick={ this.showPrevious.bind(this) }></i>
                 </div>
                 <div class='middle-panel'>
-                    <Calendar date= {this.props.date} onSelectDate={ this.handleClick.bind(this) }/>
+                    <Calendar date= {this.state.selectedDay} onSelectDate={ this.handleClick.bind(this) }/>
                 </div>
                 <div class='right-panel'>
-                    <i class="fa fa-angle-right"></i>
+                    <i class="fa fa-angle-right big-icon" onClick={ this.showNext.bind(this) } ></i>
                 </div>
                 <Modal content={this.state.selectedDay && this.state.selectedDay.getDate()} isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>                                          
             </div>

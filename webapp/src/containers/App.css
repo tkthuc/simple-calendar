@@ -1,6 +1,6 @@
 .calendar_container {
     display: grid;
-    grid-template-columns: 35px auto 35px;
+    grid-template-columns: 40px auto 40px;
 }
 
 .left-panel {
@@ -13,4 +13,9 @@
     display: flex;
     align-items: center;
     justify-content: center; 
+}
+
+i.big-icon {
+    font-size: 40px;
+    cursor: pointer;
 }
