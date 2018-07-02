@@ -9,7 +9,7 @@ export default function Modal(props) {
         <div className='modal' style={ styles }>
             <div className='modal-content'>
                 <span className="close" onClick={props.onClose}>&times;</span>
-                <p> {props.content} </p>
+                <div> {props.content} </div>
             </div>
         </div>        
     )

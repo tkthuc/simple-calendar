@@ -1,0 +1,14 @@
+.login-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap : 20px
+}
+
+.login-options .left {
+    text-align : left;    
+}
+
+.login-options .right {
+    text-align : right;
+}
+

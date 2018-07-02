@@ -4,6 +4,10 @@ import Calendar from '../components/calendar/Calendar';
 import Modal from '../components/modal/Modal';
 import {getDisplayedDates} from '../helpers';
 import './App.css';
+
+import '../styles.css'
+import 'font-awesome/css/font-awesome.min.css'
+
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 export default class App extends React.Component {
     constructor(props) {

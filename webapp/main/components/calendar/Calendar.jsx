@@ -4,10 +4,6 @@ import Day from '../day/Day';
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const weekdays =  ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-function showMonthAndYear(date) {   
-    return `${months[date.getMonth()]} ${date.getFullYear()}`  ;
-}
-
 function getFullDateFormat(date) {
     return date.getDate() + '-' + months[date.getMonth()]+ '-' + date.getFullYear();
 }

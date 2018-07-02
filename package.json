@@ -15,6 +15,7 @@
   "author": "Tran Kien Thuc",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "6.26.0",
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.15.2",
     "bootstrap": "4.1.1",
@@ -25,17 +26,24 @@
     "express": "4.16.3",
     "express-session": "~1.14.1",
     "font-awesome": "4.7.0",
+    "jsonwebtoken": "8.3.0",
     "method-override": "~2.3.6",
     "mongoose": "4.13.14",
     "morgan": "~1.7.0",
     "passport": "0.4.0",
     "passport-facebook": "~2.1.1",
     "passport-google-oauth": "~1.0.0",
+    "passport-jwt": "4.0.0",
     "passport-local": "~1.0.0",
     "passport-twitter": "~1.0.4",
     "prop-types": "15.6.2",
     "react": "16.4.0",
-    "react-dom": "16.4.0"
+    "react-dom": "16.4.0",
+    "react-form": "3.5.6",
+    "react-redux": "5.0.7",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "redux": "4.0.0"
   },
   "devDependencies": {
     "babel-core": "6.26.3",

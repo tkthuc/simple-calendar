@@ -5,26 +5,35 @@ const CleanWebapackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+    mode: 'development',
     entry: {
-        index: './webapp/src/index.js',
-        vendor: ['react', 'react-dom']
+        profile: './webapp/main/index.js',
+        login: './webapp/login/index.js',
+        vendor: ['react', 'react-dom', 'babel-polyfill']
     },
     output: {
-        filename: 'bundle.js',
-        publicPath: '/webapp/dist/',
+        filename: '[name]/[name].bundle.js',
+        publicPath: '/webapp/dist',
         sourceMapFilename: '[file].map',
         path:  `${__dirname}/webapp/dist`
     },
     plugins :[             
         new CleanWebapackPlugin(['./webpack/dist']),
         new HtmlWebpackPlugin({
-            template: './webapp/profile.ejs'
-        }),       
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "[name].css",
-            chunkFilename: "[id].css"
+            chunks: ['vendor','profile'],
+            inject: true,
+            template: './webapp/profile.ejs',
+            filename: `${__dirname}/webapp/dist/profile.html`
+        }),   
+        new HtmlWebpackPlugin({
+          chunks: ['vendor','login'],
+          inject: true,
+          template: './webapp/index.ejs',
+          filename: `${__dirname}/webapp/dist/index.html`
+        }),     
+        new MiniCssExtractPlugin({        
+            filename: "assets/[name].css",
+            chunkFilename: "assets/[name].css"
           })
     ],
     module: {
@@ -45,12 +54,12 @@ module.exports = {
           },{
             test: /\.(ttf|eot|svg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,            
             use: [{
-                loader: 'file-loader?name=[name].[ext]'
+                loader: 'file-loader?name=/assets/[name].[ext]'
             }]
           },
           { 
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-            loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+            loader: "url-loader?limit=10000&mimetype=application/font-woff&name=/assets/[name].[ext]" 
           },       
         ],    
       },
@@ -68,7 +77,7 @@ module.exports = {
             },
           }
         },
-        runtimeChunk: true
+        runtimeChunk: false
     },
     devtool: 'source-map'    
 
