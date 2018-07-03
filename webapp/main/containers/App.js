@@ -1,15 +1,23 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import Calendar from '../components/calendar/Calendar';
-import Modal from '../components/modal/Modal';
+import Modal from '../components/modal';
 import {getDisplayedDates} from '../helpers';
+
+import { updateSelectedDate } from '../../store/actions';
 import './App.css';
 
 import '../styles.css'
 import 'font-awesome/css/font-awesome.min.css'
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-export default class App extends React.Component {
+
+function getDate(date) {
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+}
+class App extends React.Component {
     constructor(props) {
         super(props);    
 
@@ -31,11 +39,18 @@ export default class App extends React.Component {
        
     }
 
-    handleClick(day) {
+    async handleClick(day) {
+          
+
+        let raw = await fetch(`${window.location.origin}/todos/${this.props.userInfo.username}?startDate="${getDate(day)}"&endDate="${getDate(day)}"`)
+        let response = await raw.json();
+
         this.setState({
             isDisplayed: true,
-            selectedDay: day
+            selectedDay: response
         });
+
+
     }
 
     closeModal() {
@@ -90,8 +105,22 @@ export default class App extends React.Component {
                 <div className='right-panel'>
                     <i className="fa fa-angle-right big-icon" onClick={ this.showNext.bind(this) } ></i>
                 </div>
-                <Modal content={this.state.selectedDay && `${this.state.selectedDay.getDate()} ${months[this.state.selectedDay.getMonth()]} ${this.state.selectedDay.getFullYear()}`} isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>                                          
+                <Modal content={ this.state.selectedDay && this.state.selectedDay.length > 0 && this.state.selectedDay[0].text } isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>                                          
             </div>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    userInfo :  state.userInfo
+});
+
+const mapDispatchToProps = dispatch => ({
+    updateSelectedDate :  ({ todos, date }) => dispatch(updateSelectedDate({todos,date}))
+});
+
+
+export default connect(
+    mapStateToProps,    
+    null 
+)(App);

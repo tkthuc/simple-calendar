@@ -15,6 +15,7 @@
   "author": "Tran Kien Thuc",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-polyfill": "6.26.0",
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.15.2",
@@ -64,11 +65,12 @@
     "nodemon": "1.17.5",
     "react": "16.4.0",
     "react-dom": "16.4.0",
+    "redux-devtools-extension": "2.13.5",
     "sass-loader": "7.0.3",
     "style-loader": "0.21.0",
     "url-loader": "1.0.1",
     "webpack": "4.10.2",
-    "webpack-cli": "3.0.3"
+    "webpack-cli": "3.0.8"
   },
   "jest": {
     "testRegex": "[a-zA-Z.]*(\\.spec)(\\.js)$$",

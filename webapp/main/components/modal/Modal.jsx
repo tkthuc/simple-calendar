@@ -9,6 +9,7 @@ export default function Modal(props) {
         <div className='modal' style={ styles }>
             <div className='modal-content'>
                 <span className="close" onClick={props.onClose}>&times;</span>
+                <div> Diary of { props.userInfo && props.userInfo.username}</div>
                 <div> {props.content} </div>
             </div>
         </div>        

@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { updateUserInfo } from '../store/actions';
+ 
 
-
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -43,6 +45,7 @@ export default class Login extends React.Component {
                         message: 'Wrong username or password'
                     })
                 } else {
+                    this.props.updateUserInfo( { username });
                     this.props.history.push(`/profile/${username}`);                   
                 }
             }
@@ -79,3 +82,16 @@ export default class Login extends React.Component {
 
     }
 }
+
+const mapStateToProps = state => ({
+    userInfo: state.userInfo
+})
+
+const mapDispatchToProps = dispatch => ({
+    updateUserInfo: userInfo => dispatch(updateUserInfo(userInfo))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Login);

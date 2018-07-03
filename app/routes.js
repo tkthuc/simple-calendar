@@ -1,18 +1,15 @@
 var path = require('path');
 
+var todosRoutes = require('./routes/todos.routes.js');
+
 module.exports = function(app, passport) {
    
-
-    // app.get('/', function(req, res) {       
-    //     res.sendFile(path.resolve('./webapp/dist/index.html'));
-    // })
 
     app.get('/webapp/dist/:filename', function(req,res) {
         res.sendFile(path.resolve(`./webapp/dist/${req.params.filename}`));
     }); 
 
-    app.get('/profile/:username', isLoggedIn , function(req, res) {
-    
+    app.get('/profile/:username', isLoggedIn , function(req, res) {    
         res.sendFile(path.resolve('./webapp/dist/profile.html'));
       
     });
@@ -74,6 +71,7 @@ module.exports = function(app, passport) {
         })(req, res, next);
     });
     
+    app.use('/todos', todosRoutes);
 
     app.use(function(req, res){
         res.sendFile(path.resolve('./webapp/dist/index.html'));

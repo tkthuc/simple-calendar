@@ -9,7 +9,7 @@ module.exports = {
     entry: {
         profile: './webapp/main/index.js',
         login: './webapp/login/index.js',
-        vendor: ['react', 'react-dom', 'babel-polyfill']
+        vendor: ['react', 'react-dom', 'babel-polyfill','redux']
     },
     output: {
         filename: '[name]/[name].bundle.js',

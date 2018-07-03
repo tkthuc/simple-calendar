@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 let todoSchema = mongoose.Schema({
     text: String,
-    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    username: String,
+    // in MM-DD-YYYY format
     date: Date
 });
 
