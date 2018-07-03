@@ -29,7 +29,7 @@ class App extends React.Component {
 
         this.state = {
             isDisplayed: false,
-            selectedDay: null,
+            todos: [],
             currentDate: today,
             displayedDays,
             displayedMonth,
@@ -47,7 +47,7 @@ class App extends React.Component {
 
         this.setState({
             isDisplayed: true,
-            selectedDay: response
+            todos: response
         });
 
 
@@ -105,7 +105,7 @@ class App extends React.Component {
                 <div className='right-panel'>
                     <i className="fa fa-angle-right big-icon" onClick={ this.showNext.bind(this) } ></i>
                 </div>
-                <Modal content={ this.state.selectedDay && this.state.selectedDay.length > 0 && this.state.selectedDay[0].text } isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>                                          
+                <Modal content={ this.state.todos } isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>                                          
             </div>
         )
     }
