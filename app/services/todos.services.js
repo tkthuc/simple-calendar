@@ -1,15 +1,35 @@
 let Todos =  require('../models/todos');
 
 
-const getTodos = async ({username, startDate, endDate}) => {
+const getTodos = async ({username, startDate, endDate, page, perPage}) => {
+
+    if(page=== undefined) {
+        page = 1;
+    }
+    perPage = perPage === undefined ? 10 : perPage;
     try{
-        return await Todos.find({
+        let todos = Todos.find({
             username: username,
             date: {
                $gte: new Date(startDate),
                $lte: new Date(endDate)
             }
-        });
+        }).skip((page-1)*perPage).limit(parseInt(perPage)).exec();
+        
+        let totalPages = Todos.count();
+
+        
+        const values = await Promise.all([todos,totalPages]);
+
+        return {
+            totalPages: Math.ceil(values[1]/perPage),
+            currentPage: page,
+            recordsPerPage : perPage,
+            todos: values[0]
+        }
+        
+
+        
     }catch(err) {
         throw err;
     }

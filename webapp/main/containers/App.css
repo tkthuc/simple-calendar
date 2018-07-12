@@ -19,3 +19,7 @@ i.big-icon {
     font-size: 40px;
     cursor: pointer;
 }
+
+ul {
+    list-style-type: none;
+  }

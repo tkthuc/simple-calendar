@@ -5,8 +5,10 @@ const todoServices = require('../services/todos.services.js');
 router.get('/:username', async (req,res,next) => {
     const startDate = req.query.startDate;
     const endDate = req.query.endDate;
+    const perPage = req.query.perPage;
+    const page = req.query.page;
     try{
-        const todos = await todoServices.getTodos( { username: req.params.username, startDate: startDate, endDate: endDate });
+        const todos = await todoServices.getTodos( { username: req.params.username, startDate: startDate, endDate: endDate, perPage: perPage, page:page });
         res.send(todos);
     }catch(err) {
         res.status(400).json(err);

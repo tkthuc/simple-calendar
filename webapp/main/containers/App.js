@@ -10,7 +10,6 @@ import { updateSelectedDate } from '../../store/actions';
 import './App.css';
 
 import '../styles.css'
-import 'font-awesome/css/font-awesome.min.css'
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -33,7 +32,9 @@ class App extends React.Component {
             currentDate: today,
             displayedDays,
             displayedMonth,
-            displayedYear
+            displayedYear,
+            currentPage:1,
+            recordsPerPage:10
         }
 
        
@@ -42,12 +43,15 @@ class App extends React.Component {
     async handleClick(day) {
           
 
-        let raw = await fetch(`${window.location.origin}/todos/${this.props.userInfo.username}?startDate="${getDate(day)}"&endDate="${getDate(day)}"`)
+        let raw = await fetch(`${window.location.origin}/todos/${this.props.userInfo.username}?startDate="${getDate(day)}"&endDate="${getDate(day)}"&perPage=${this.state.recordsPerPage}&page=${this.state.currentPage}`)
         let response = await raw.json();
 
         this.setState({
             isDisplayed: true,
-            todos: response
+            todos: response.todos,
+            currentPage: response.currentPage,
+            totalPages: response.totalPages,
+            selectedDate: day
         });
 
 
@@ -90,6 +94,34 @@ class App extends React.Component {
         });
     }
 
+    getNextItems() {
+
+            if(Math.ceil(this.state.todos.length/this.state.recordsPerPage) == this.state.totalPages ) {
+                return Promise.resolve();
+            }
+
+            let day = this.state.selectedDate;
+
+
+            return fetch(`${window.location.origin}/todos/${this.props.userInfo.username}?startDate="${getDate(day)}"&endDate="${getDate(day)}"&perPage=${this.state.recordsPerPage}&page=${parseInt(this.state.currentPage)+1}`)
+                    .then(
+                        raw => raw.json()
+                    )
+                    .then(
+                        response =>  this.setState({
+                            isDisplayed: true,
+                            todos: [...this.state.todos, ...response.todos],
+                            currentPage: response.currentPage,
+                            totalPages: response.totalPages
+                        })
+                    )            
+                    .catch(err => console.log(err))         
+
+       
+      
+
+    }
+
     render() {
         return (
             <div className='calendar_container'>
@@ -105,7 +137,7 @@ class App extends React.Component {
                 <div className='right-panel'>
                     <i className="fa fa-angle-right big-icon" onClick={ this.showNext.bind(this) } ></i>
                 </div>
-                <Modal content={ this.state.todos } isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()}></Modal>                                          
+                <Modal content={ this.state.todos } isDisplayed={this.state.isDisplayed} onClose={() => this.closeModal()} getNextItems={this.getNextItems.bind(this)}></Modal>                                          
             </div>
         )
     }

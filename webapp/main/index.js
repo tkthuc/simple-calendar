@@ -5,8 +5,9 @@ import App from './containers/App';
 
 
 
-import './styles.css'
+
 import 'font-awesome/css/font-awesome.min.css'
+import './styles.css'
 ReactDOM.render(    
     <App/>    ,
     document.getElementById('container')
